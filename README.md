@@ -40,6 +40,7 @@ install pusci compile, package, test itd.
 - install - install w local mvn repo
 - deploy - deploy do shared mvn repo
 
+https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference
 faz jest sporo wiecej w default, initialize, generate sources, process classes,
  pre-interation-test etc.
 mozna sie zapiac na kazda z tych faz
@@ -68,6 +69,8 @@ mozna sie zapiac na kazda z tych faz
   * deploy - default. Wrzuca artefakty do mvn repo
   * site - site lifecycle. Robi strone mavenowa projektu. Ma 7 celow
   
+  na stronie apache mvn jest lista pluginow
+  
  ## hooki w pom:
  mozna zapiac sie na konkretna faze z ktoregos lifecycle
  i wykonac jakis plugin. np w pom:
@@ -94,4 +97,7 @@ mozna sie zapiac na kazda z tych faz
   popularna rzecz to executable jar. mozna skonfigurowac wg https://maven.apache.org/shared/maven-archiver/examples/classpath.html
   
   ### deploy plugin
-  upload do mvn repo
+  upload do mvn repo. W pom trzeba wyspecyfikowac deployManagement
+  
+  
+  
