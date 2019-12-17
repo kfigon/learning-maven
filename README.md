@@ -21,6 +21,9 @@ mvn PLUGIN:GOAL</b>
 * default - budowanie, test, package, deploy. Nie ma defaultowych pluginow
 * site - tworzy strone projektu, ma pluginy, rzadko uzywane
 
+kazda szczegolowa faza w ramach lifecycle puszcza poprzednie w ramach tego samego lifecycle.
+install pusci compile, package, test itd.
+
 #### clean
 3 fazy
 * pre-clean
@@ -77,3 +80,18 @@ mozna sie zapiac na kazda z tych faz
     goals
      goal - co - czyli jaki plugin goal ma sie zawolac podczas hooka
    
+   
+  ### resource plugin
+  orpocz hookow mozna includowac albo excludowac rozne pliki, generowac dodatkow, zmieniac katalog /resource itd. 
+  
+  ### surefire plugin
+  wszystko co konczy/zaczyna sie na Test/tests/testCase zostanie zebrane przez plugin!!!
+  Jak nie ma to plugin nie zlapie (intellij juz tak)
+  
+  w outpucie sa raporty z surefire w .txt i xml
+  
+  ### jar plugin
+  popularna rzecz to executable jar. mozna skonfigurowac wg https://maven.apache.org/shared/maven-archiver/examples/classpath.html
+  
+  ### deploy plugin
+  upload do mvn repo
