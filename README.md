@@ -99,5 +99,6 @@ mozna sie zapiac na kazda z tych faz
   ### deploy plugin
   upload do mvn repo. W pom trzeba wyspecyfikowac deployManagement
   
-  
+  ### mvn dependency:tree
+  tworzy drzewo dependencji
   
