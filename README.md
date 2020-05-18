@@ -102,3 +102,5 @@ mozna sie zapiac na kazda z tych faz
   ### mvn dependency:tree
   tworzy drzewo dependencji
   
+## groovy
+na branchu `groovy` jest przyklad testu napisanego rownolegle z java w groovym!
