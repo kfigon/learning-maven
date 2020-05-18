@@ -65,6 +65,7 @@ mozna sie zapiac na kazda z tych faz
   * compiler - default lifecycle. kompiluje testy lub kod
   * resources - default lifeccyle. przenosi pliki do dir output
   * surefire - default lifecycle. odpala testy jednostkowe. junit, testng (+cucumber i spock)
+  * failsafe - default lifecycle. odpala testy integracyjne (wylapuje inne nazwy - np. suffix `IT`)
   * jar - default lifecycle. robi jar z aplikacja lub z testami
   * deploy - default. Wrzuca artefakty do mvn repo
   * site - site lifecycle. Robi strone mavenowa projektu. Ma 7 celow

@@ -88,11 +88,9 @@
                             <goal>echo</goal>
                             <goal>help</goal>
                         </goals>
-
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 </project>
