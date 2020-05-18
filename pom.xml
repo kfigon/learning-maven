@@ -50,8 +50,11 @@
 <!--                            initialize jest w default lifecycle -->
 <!--                            odpalenie mvn clean przed install nie bedzie potrzebne, zrobi sie samo-->
                             <goal>clean</goal>
-<!--                     nie trzeba pisac clean:clean, bo jestesmy w clean plugin                               -->
                         </goals>
+
+<!-- gdy zostanie zawolane mvn initialize                -->
+<!-- to zostanie tez mvn echo:clean                       -->
+<!-- nie trzeba pisac clean:clean, bo jestesmy w clean plugin -->
                     </execution>
                 </executions>
             </plugin>
@@ -77,7 +80,9 @@
                         </configuration>
 
                         <id>pre-test-message</id>
-<!--        zawolanie mvn process-test-clases                -->
+<!--        gdy zostanie zawolane mvn process-test-clases                -->
+<!-- to zostanie tez mvn echo:echo                       -->
+<!--       mvn echo:help                 -->
                         <phase>process-test-classes</phase>
                         <goals>
                             <goal>echo</goal>
