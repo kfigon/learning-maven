@@ -105,3 +105,10 @@ mozna sie zapiac na kazda z tych faz
   
 ## groovy
 na branchu `groovy` jest przyklad testu napisanego rownolegle z java w groovym!
+
+## skip tests
+`mvn install -DskipTests` - pomija wszystko
+
+`mvn install -DskipITs` - pominie failsafe
+
+to ustawia propertiesa `<properties/>` na czas runa
