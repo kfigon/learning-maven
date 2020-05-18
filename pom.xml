@@ -28,6 +28,13 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <classifier>indy</classifier>
+            <version>3.0.3</version>
+        </dependency>
     </dependencies>
 
 <!--    skladnia: jaki plugin,
@@ -36,61 +43,66 @@
 
     <build>
         <plugins>
+<!-- groovy!-->
             <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>3.1.0</version>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-eclipse-compiler</artifactId>
+                <version>3.6.0-03</version>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.12</version>
                 <executions>
                     <execution>
-
-<!--                        podczas fazy initialize z default lifecycle -->
-                        <id>moje-auto-clean</id>
-                        <phase>initialize</phase>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
                         <goals>
-<!--                            czyli podczas initialize (mvn initialize) odpali mvn clean plugin i goal: clean-->
-<!--                            initialize jest w default lifecycle -->
-<!--                            odpalenie mvn clean przed install nie bedzie potrzebne, zrobi sie samo-->
-                            <goal>clean</goal>
+                            <goal>add-source</goal>
                         </goals>
-
-<!-- gdy zostanie zawolane mvn initialize                -->
-<!-- to zostanie tez mvn echo:clean                       -->
-<!-- nie trzeba pisac clean:clean, bo jestesmy w clean plugin -->
+                        <configuration>
+                            <sources>
+                                <source>src/main/groovy</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/test/groovy</source>
+                            </sources>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
-
-<!--            po przetworzeniu pliku testowych, daj komunikat-->
             <plugin>
-                <groupId>com.soebes.maven.plugins</groupId>
-                <artifactId>echo-maven-plugin</artifactId>
-                <version>0.3.0</version>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <echos>
-                                <echo></echo><echo></echo><echo></echo>
-                                <echo>==============THIS IS MY MESSAGE=============</echo>
-                                <echo>==============THIS IS MY MESSAGE=============</echo>
-                                <echo>==============THIS IS MY MESSAGE=============</echo>
-                                <echo>==============THIS IS MY MESSAGE=============</echo>
-                                <echo>==============THIS IS MY MESSAGE=============</echo>
-                                <echo>==============THIS IS MY MESSAGE=============</echo>
-                                <echo></echo><echo></echo><echo></echo>
-                            </echos>
-                        </configuration>
-
-                        <id>pre-test-message</id>
-<!--        gdy zostanie zawolane mvn process-test-clases                -->
-<!-- to zostanie tez mvn echo:echo                       -->
-<!--       mvn echo:help                 -->
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>echo</goal>
-                            <goal>help</goal>
-                        </goals>
-
-                    </execution>
-                </executions>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version><!-- 3.6.2 is the minimum -->
+                <configuration>
+                    <compilerId>groovy-eclipse-compiler</compilerId>
+                    <compilerArguments>
+                        <indy/><!-- optional; supported by batch 2.4.12-04+ -->
+                        <configScript>config.groovy</configScript><!-- optional; supported by batch 2.4.13-02+ -->
+                    </compilerArguments>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-compiler</artifactId>
+                        <version>3.6.0-03</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-batch</artifactId>
+                        <version>3.0.3-01</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
         </plugins>
