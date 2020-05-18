@@ -30,10 +30,15 @@
         </dependency>
     </dependencies>
 
+<!--    skladnia: jaki plugin,
+        podczas ktorej fazy,
+        jaki swoj goal ma odpalic -->
+
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
                 <executions>
                     <execution>
 
@@ -41,13 +46,48 @@
                         <id>moje-auto-clean</id>
                         <phase>initialize</phase>
                         <goals>
-                            <!-- clean:clean nie potrzebny, bo jestesmy w clean plugin-->
-<!--                            czyli podczas initialize odpali mvn clean plugin i goal: clean-->
+<!--                            czyli podczas initialize (mvn initialize) odpali mvn clean plugin i goal: clean-->
+<!--                            initialize jest w default lifecycle -->
+<!--                            odpalenie mvn clean przed install nie bedzie potrzebne, zrobi sie samo-->
                             <goal>clean</goal>
+<!--                     nie trzeba pisac clean:clean, bo jestesmy w clean plugin                               -->
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+
+<!--            po przetworzeniu pliku testowych, daj komunikat-->
+            <plugin>
+                <groupId>com.soebes.maven.plugins</groupId>
+                <artifactId>echo-maven-plugin</artifactId>
+                <version>0.3.0</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <echos>
+                                <echo></echo><echo></echo><echo></echo>
+                                <echo>==============THIS IS MY MESSAGE=============</echo>
+                                <echo>==============THIS IS MY MESSAGE=============</echo>
+                                <echo>==============THIS IS MY MESSAGE=============</echo>
+                                <echo>==============THIS IS MY MESSAGE=============</echo>
+                                <echo>==============THIS IS MY MESSAGE=============</echo>
+                                <echo>==============THIS IS MY MESSAGE=============</echo>
+                                <echo></echo><echo></echo><echo></echo>
+                            </echos>
+                        </configuration>
+
+                        <id>pre-test-message</id>
+<!--        zawolanie mvn process-test-clases                -->
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>echo</goal>
+                            <goal>help</goal>
+                        </goals>
+
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 </project>
